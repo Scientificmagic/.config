@@ -1,1 +1,2 @@
-# .config
+# ~/.config
+For configurations and settings
