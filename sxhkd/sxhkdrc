@@ -1,0 +1,150 @@
+#
+# wm independent hotkeys
+#
+
+# terminal emulator
+super + Return
+	kitty
+
+# program launcher
+super + @space
+	rofi -show run
+
+# reload sxhkd & restart bspwm
+super + Escape
+#	pkill -USR1 -x sxhkd;\
+	bspc wm -r
+	
+#
+# bspwm hotkeys
+#
+
+# quit bspwm
+super + alt + {q}
+	bspc {quit}
+
+# close and kill
+super + {_,shift + }w
+	bspc node -{c,k}
+
+# send the newest marked node to the newest preselected node
+# focus marked
+# unmark
+super + y
+    marked=$(bspc query -N -n newest.marked.local);\
+    bspc node $marked -n newest.!automatic.local;\
+    bspc node -f $marked;\
+    bspc node -g $marked marked
+	
+# swap the current node and the biggest node
+super + g
+	bspc node -s biggest
+
+# monocle mode
+super + h
+    bspc desktop -l next
+	
+#
+# state/flags
+#
+
+# set the window state
+super + {t,shift + t,s,f}
+	bspc node -t {tiled,pseudo_tiled,floating,\~fullscreen}
+
+# set the node flags
+# super + ctrl + {m,x,y,z}
+#	bspc node -g {marked,locked,sticky,private}
+super + {m}
+	bspc node -g {marked}
+
+#
+# focus/swap
+#
+
+# focus the node in the given direction
+super + {_,alt + }{i,j,k,l}
+    bspc node -{f,s} {north,west,south,east}
+
+# focus the node for brother
+super + b
+	bspc node -f @brother
+
+# focus the next/previous desktop in the current monitor
+super + {u,o}
+    bspc desktop -f {prev,next}.local
+	
+# focus the next/previous node in the current desktop
+super + bracket{left,right}
+	bspc node -f {prev,next}.local
+
+# focus the last node/desktop
+alt + {Tab}
+	bspc {node} -f last
+super + {Tab}
+	bspc {desktop} -f last
+
+# focus or send to the given desktop
+super + {_,shift + }{1-9,0}
+	bspc {desktop -f,node -d} '^{1-9,10}'
+	
+	
+# swap focused with newest marked
+# focus marked
+# toggle marked
+super + n;
+    marked=$(bspc query -N -n newest.marked.local);\
+    bspc node -s $marked;\
+    bspc node -f $marked;\
+    bspc node -g marked
+    
+#
+# preselect
+#
+
+# preselect the direction
+super + ctrl + {i,j,k,l}
+    bspc node -p {north,west,south,east}
+
+# preselect the ratio
+super + ctrl + {1-9}
+	bspc node -o 0.{1-9}
+
+# cancel the preselection for the focused node
+super + ctrl + space
+	bspc node -p cancel
+
+# cancel the preselection for the focused desktop
+super + ctrl + space
+	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+
+#
+# move/resize
+#
+
+# move a floating window
+super + {Up,Left,Down,Right}
+    bspc node -v {0 -20,-20 0,0 20,20 0}
+
+# expand a window by moving one of its side outward
+super + alt + {Up,Left,Down,Right}
+    bspc node -z {top 0 -20,left -20 0,bottom 0 20,right 20 0}
+
+# contract a window by moving one of its side inward
+super + alt + shift + {Up,Left,Down,Right}
+    bspc node -z {bottom 0 -20,right -20 0,top 0 20,left 20 0}
+
+#
+# media keys
+#
+XF86MonBrightnessUp
+	xbacklight -inc 5
+
+XF86MonBrightnessDown
+	xbacklight -dec 5
+
+XF86AudioRaiseVolume
+	pactl set-sink-volume 0 +5%
+
+XF86AudioLowerVolume
+	pactl set-sink-volume 0 -5%

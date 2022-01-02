@@ -1,0 +1,17 @@
+# ignore everything
+*
+# but descend into directories
+!*/
+
+# whitelist subtrees
+!/bspwm/**
+!/kitty/kitty.conf
+!/neofetch/**
+!/polybar/**
+!/ranger/**
+!/rofi/**
+!/sxhkd/**
+
+
+ 
+!.gitignore
