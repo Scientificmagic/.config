@@ -33,6 +33,7 @@ font-1 = "Symbols Nerd Font:style=2048-em:size=14;2"
 
 width = 100%
 height = 30
+padding-right = 2
 border-size = 0
 
 fixed-center = true
@@ -43,7 +44,7 @@ foreground = ${colors.foreground}
 
 modules-left = bspwm
 modules-center = pulseaudio xbacklight battery
-modules-right = date
+modules-right = network date
 wm-restack = bspwm
 
 
@@ -106,43 +107,16 @@ inherit = module/xbacklight
 type = internal/backlight
 card = intel_backlight
 
-[module/wlan]
+[module/network]
 type = internal/network
-interface = 
-interval = 3.0
+interface = wlx74e5436a4542
+interval = 30
 
-format-connected = <ramp-signal> <label-connected>
-format-connected-underline = #9f78e1
-label-connected = %essid%
+format-connected = <label-connected>
+label-connected = "直"
 
-format-disconnected =
-;format-disconnected = <label-disconnected>
-;format-disconnected-underline = ${self.format-connected-underline}
-;label-disconnected = %ifname% disconnected
-;label-disconnected-foreground = ${colors.foreground-alt}
-
-ramp-signal-0 = 
-ramp-signal-1 = 
-ramp-signal-2 = 
-ramp-signal-3 = 
-ramp-signal-4 = 
-ramp-signal-foreground = ${colors.foreground-alt}
-
-[module/eth]
-type = internal/network
-interface = 
-interval = 3.0
-
-format-connected-underline = #55aa55
-format-connected-prefix = " "
-format-connected-prefix-foreground = ${colors.foreground-alt}
-label-connected = %local_ip%
-
-format-disconnected =
-;format-disconnected = <label-disconnected>
-;format-disconnected-underline = ${self.format-connected-underline}
-;label-disconnected = %ifname% disconnected
-;label-disconnected-foreground = ${colors.foreground-alt}
+format-disconnected = <label-disconnected>
+label-disconnected = "睊"
 
 [module/date]
 type = internal/date
