@@ -27,8 +27,9 @@ alert = ${xrdb:color1:#bd2c40}
 grey = #808080
 
 [bar/custom]
-font-0 = "DejaVu Sans:style=Book"
-font-1 = "Symbols Nerd Font:style=2048-em"
+# ;2 helps center text vertically
+font-0 = "DejaVu Sans:style=Book:size=12;2"
+font-1 = "Symbols Nerd Font:style=2048-em:size=14;2"
 
 width = 100%
 height = 30
@@ -41,8 +42,8 @@ background = ${colors.background}
 foreground = ${colors.foreground}
 
 modules-left = bspwm
-modules-center =
-modules-right = pulseaudio xbacklight battery date
+modules-center = pulseaudio xbacklight battery
+modules-right = date
 wm-restack = bspwm
 
 
@@ -92,20 +93,13 @@ label-empty-padding = 2
 
 [module/xbacklight]
 type = internal/xbacklight
+format = <ramp> <label>
 
-format = <bar>
+ramp-0 = ""
+ramp-1 = ""
+ramp-2 = ""
 
-bar-width = 10
-bar-indicator = *
-bar-indicator-foreground = #fff
-bar-indicator-font = 2
-bar-fill = ─
-bar-fill-font = 2
-#bar-fill-foreground = #9f78e1
-bar-fill-foreground = ${colors.secondary}
-bar-empty = ─
-bar-empty-font = 2
-bar-empty-foreground = ${colors.grey}
+label = "%percentage%%"
 
 [module/backlight-acpi]
 inherit = module/xbacklight
@@ -152,16 +146,14 @@ format-disconnected =
 
 [module/date]
 type = internal/date
-interval = 5
+interval = 1
+label = %date% %time%
 
 date = "%Y/%m/%d"
 time = "%l:%M:%S"
 
 format-prefix = ""
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #0a6cf5
-
-label = %date% %time%
 
 [module/pulseaudio]
 type = internal/pulseaudio
@@ -193,7 +185,6 @@ format-full-prefix-foreground = ${colors.foreground-alt}
 label-full = "%percentage%%"
 label-charging = "%percentage%%"
 label-discharging = "%percentage%%"
-
 
 ramp-capacity-0 = ""
 ramp-capacity-1 = ""
