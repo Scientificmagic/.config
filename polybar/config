@@ -17,14 +17,15 @@
 ;==========================================================
 
 [colors]
-background = ${xrdb:color0:#222}
-background-alt = ${xrdb:color8:#444}
-foreground = ${xrdb:color7:#dfdfdf}
-foreground-alt = #555
-primary = ${xrdb:color2:#ffb52a}
-secondary = ${xrdb:color4:#e60053}
-alert = ${xrdb:color1:#bd2c40}
-grey = #808080
+#bar background (backup black)
+background = ${xrdb:color0:#000000}
+#bspwm desktop indicator (backup light-grey)
+background-alt = ${xrdb:color4:#b0b0b0}
+#main text color (backup white)
+foreground = ${xrdb:color7:#fffff}
+#alternative text (dark-grey)
+foreground-alt = 666666
+
 
 [bar/custom]
 # ;2 helps center text vertically
@@ -46,7 +47,6 @@ modules-left = bspwm
 modules-center = pulseaudio xbacklight battery
 modules-right = network date
 wm-restack = bspwm
-
 
 
 [module/xwindow]
@@ -74,23 +74,16 @@ type = internal/bspwm
 
 label-focused = %index%
 label-focused-background = ${colors.background-alt}
-label-focused-underline= ${colors.primary}
 label-focused-padding = 2
 
 label-occupied = %index%
 label-occupied-padding = 2
 
-label-urgent = %index%!
-label-urgent-background = ${colors.alert}
-label-urgent-padding = 2
-
 label-empty = %index%
 label-empty-foreground = ${colors.foreground-alt}
 label-empty-padding = 2
 
-; Separator in between workspaces
-; label-separator = |
-
+label-separator = "|"
 
 [module/xbacklight]
 type = internal/xbacklight
@@ -126,9 +119,6 @@ label = %date% %time%
 date = "%Y/%m/%d"
 time = "%l:%M:%S"
 
-format-prefix = ""
-format-prefix-foreground = ${colors.foreground-alt}
-
 [module/pulseaudio]
 type = internal/pulseaudio
 format-volume = <ramp-volume> <label-volume>
@@ -154,7 +144,7 @@ format-charging = <ramp-capacity> <label-charging>
 format-discharging = <ramp-capacity> <label-discharging>
 
 format-full-prefix = " "
-format-full-prefix-foreground = ${colors.foreground-alt}
+#format-full-prefix-foreground = ${colors.foreground}
 
 label-full = "%percentage%%"
 label-charging = "%percentage%%"
@@ -163,7 +153,7 @@ label-discharging = "%percentage%%"
 ramp-capacity-0 = ""
 ramp-capacity-1 = ""
 ramp-capacity-2 = ""
-ramp-capacity-foreground = ${colors.foreground-alt}
+#ramp-capacity-foreground = ${colors.foreground-alt}
 
 [settings]
 screenchange-reload = true
