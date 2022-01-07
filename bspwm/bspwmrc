@@ -7,8 +7,8 @@ sxhkd & disown
 bspwm-focus & disown
 polybar custom & disown
 
-#feh --bg-center ~/Pictures/wallpapers/"wings of a warrior.jpg"
-feh --bg-center ~/Pictures/wallpapers/cloudbank.jpg
+#wal -i ~/Pictures/wallpapers/"wings of a warrior.jpg"
+wal -i ~/Pictures/wallpapers/cloudbank.jpg
 
 
 bspc monitor -d I II III IV V VI VII VIII IX
